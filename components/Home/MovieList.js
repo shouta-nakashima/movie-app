@@ -1,6 +1,9 @@
 import React from "react";
 
 const MovieList = ({ movies }) => {
+	const shortDescription = (text) => {
+		return text.substr(0, 50) + "...";
+	};
 	return (
 		<>
 			<div className="row">
@@ -14,7 +17,9 @@ const MovieList = ({ movies }) => {
 								<h4 className="card-title">
 									<a href="#">{movie.name}</a>
 								</h4>
-								<p className="card-text">{movie.description}</p>
+								<p className="card-text">
+									{shortDescription(movie.description)}
+								</p>
 							</div>
 							<div className="card-footer">
 								<small className="text-muted">{movie.rating}</small>
