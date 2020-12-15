@@ -40,6 +40,22 @@ const MOVIE_DATA = [
 	},
 ];
 
+const CATEGORY_DATA = [
+	{ id: "c-1", name: "drama" },
+	{ id: "c-2", name: "fantasy" },
+	{ id: "c-3", name: "adventure" },
+	{ id: "c-4", name: "action" },
+];
+
+export const categoryList = () => {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve(CATEGORY_DATA);
+			//reject("データの取得に失敗しました。");
+		}, 50);
+	});
+};
+
 export const movieList = () => {
 	return new Promise((resolve, reject) => {
 		setTimeout(() => {
