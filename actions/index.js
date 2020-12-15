@@ -35,5 +35,10 @@ const MOVIE_DATA = [
 ];
 
 export const movieList = () => {
-	return MOVIE_DATA;
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve(MOVIE_DATA);
+			//reject("データの取得に失敗しました。");
+		}, 50);
+	});
 };

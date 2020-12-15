@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Navber from "../components/Navber";
 import SideMenu from "../components/Home/SideMenu";
@@ -8,8 +8,7 @@ import Footer from "../components/Footer";
 
 import { movieList } from "../actions/index";
 
-const Home = () => {
-	const movies = movieList();
+const Home = (props) => {
 	return (
 		<div>
 			<Head>
@@ -41,13 +40,21 @@ const Home = () => {
 					</div>
 					<div className="col-lg-9">
 						<Carousel />
-						<MovieList movies={movies} />
+						<MovieList movies={props.movies} />
 					</div>
 				</div>
 			</div>
 			<Footer />
 		</div>
 	);
+};
+
+Home.getInitialProps = async () => {
+	const movies = await movieList();
+
+	return {
+		movies,
+	};
 };
 
 export default Home;
