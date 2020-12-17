@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const MovieCreateForm = (props) => {
 	const [form, setForm] = useState({
@@ -8,6 +8,12 @@ const MovieCreateForm = (props) => {
 		image: "",
 		cover: "",
 	});
+
+	useEffect(() => {
+		if (props.initialData) {
+			setForm(props.initialData);
+		}
+	}, [props.initialData]);
 
 	const handleChange = (e) => {
 		const target = e.target;
@@ -121,7 +127,7 @@ const MovieCreateForm = (props) => {
 					</select>
 				</div>
 				<button onClick={submitForm} type="button" className="btn btn-primary">
-					Create
+					{props.submitText || "Create"}
 				</button>
 			</form>
 		</div>
