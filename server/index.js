@@ -16,13 +16,15 @@ app.prepare().then(() => {
 		return res.json(movieData);
 	});
 
+	server.get("/api/v1/movie/:id", (req, res) => {
+		const { id } = req.params;
+		const movie = movieData.find((m) => m.id === id);
+		return res.json(movie);
+	});
+
 	server.post("/api/v1/movies", (req, res) => {
 		const movie = req.body;
 		return res.json({ message: "hello next" });
-	});
-
-	server.patch("/api/v1/movie/:id", (req, res) => {
-		return res.json({ message: "edit next" });
 	});
 
 	server.delete("/api/v1/movie/:id", (req, res) => {
