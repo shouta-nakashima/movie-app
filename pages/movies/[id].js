@@ -1,11 +1,17 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { getMovieById } from "../../actions";
+import { getMovieById, deleteMovie } from "../../actions";
 
 const Movie = (props) => {
 	const router = useRouter();
 	const { id } = router.query;
 	const { movie } = props;
+
+	const handleDelete = (id) => {
+		deleteMovie(id).then(() => {
+			router.push("/");
+		});
+	};
 	return (
 		<div className="pt-5 text-center">
 			<img
@@ -20,6 +26,12 @@ const Movie = (props) => {
 				<p className="lead">{movie.description}</p>
 				<hr className="my-4" />
 				<p>{movie.genre}</p>
+				<button
+					onClick={() => handleDelete(id)}
+					className="btn btn-danger btn-lg"
+					role="button">
+					Delete
+				</button>
 			</div>
 		</div>
 	);

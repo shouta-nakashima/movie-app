@@ -43,7 +43,21 @@ app.prepare().then(() => {
 	});
 
 	server.delete("/api/v1/movie/:id", (req, res) => {
-		return res.json({ message: "deleted next" });
+		const { id } = req.params;
+
+		const movieIndex = movieData.findIndex((m) => m.id === id);
+		movieData.splice(movieIndex, 1);
+
+		const fileToPath = path.join(__dirname, filePath);
+
+		const stringifiedData = JSON.stringify(movieData, null, 2);
+
+		fs.writeFile(fileToPath, stringifiedData, (err) => {
+			if (err) {
+				return res.status(422).send(err);
+			}
+			res.json("movieを削除しました。");
+		});
 	});
 	// we are handling all of the request comming to our server
 	server.get("*", (req, res) => {

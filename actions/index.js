@@ -35,3 +35,9 @@ export const getMovieById = (id) => {
 		.get(`http://localhost:3000/api/v1/movie/${id}`)
 		.then((res) => res.data);
 };
+
+export const deleteMovie = (id) => {
+	return axios
+		.delete(`http://localhost:3000/api/v1/movie/${id}`)
+		.then((res) => res.data);
+};
