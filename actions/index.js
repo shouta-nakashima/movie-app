@@ -36,6 +36,12 @@ export const getMovieById = (id) => {
 		.then((res) => res.data);
 };
 
+export const updateMovie = (movie) => {
+	return axios
+		.patch(`http://localhost:3000/api/v1/movie/${movie.id}`, movie)
+		.then((res) => res.data);
+};
+
 export const deleteMovie = (id) => {
 	return axios
 		.delete(`http://localhost:3000/api/v1/movie/${id}`)

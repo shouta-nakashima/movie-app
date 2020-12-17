@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { getMovieById, deleteMovie } from "../../actions";
+import { getMovieById, deleteMovie } from "../../../actions";
 
 const Movie = (props) => {
 	const router = useRouter();
@@ -8,9 +8,14 @@ const Movie = (props) => {
 	const { movie } = props;
 
 	const handleDelete = (id) => {
-		deleteMovie(id).then(() => {
-			router.push("/");
-		});
+		if (window.confirm("削除しますか？")) {
+			deleteMovie(id).then(() => {
+				alert("削除しました。");
+				router.push("/");
+			});
+		} else {
+			return;
+		}
 	};
 	return (
 		<div className="pt-5 text-center">
@@ -28,9 +33,15 @@ const Movie = (props) => {
 				<p>{movie.genre}</p>
 				<button
 					onClick={() => handleDelete(id)}
-					className="btn btn-danger btn-lg"
+					className="btn btn-danger btn-lg mr-1"
 					role="button">
 					Delete
+				</button>
+				<button
+					onClick={() => router.push(`/movies/${id}/edit`)}
+					className="btn btn-primary btn-lg"
+					role="button">
+					Edit
 				</button>
 			</div>
 		</div>

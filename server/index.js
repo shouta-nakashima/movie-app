@@ -59,6 +59,25 @@ app.prepare().then(() => {
 			res.json("movieを削除しました。");
 		});
 	});
+
+	server.patch("/api/v1/movie/:id", (req, res) => {
+		const { id } = req.params;
+
+		const movie = req.body;
+		const movieIndex = movieData.findIndex((m) => m.id === id);
+		movieData[movieIndex] = movie;
+
+		const fileToPath = path.join(__dirname, filePath);
+
+		const stringifiedData = JSON.stringify(movieData, null, 2);
+
+		fs.writeFile(fileToPath, stringifiedData, (err) => {
+			if (err) {
+				return res.status(422).send(err);
+			}
+			res.json(movie);
+		});
+	});
 	// we are handling all of the request comming to our server
 	server.get("*", (req, res) => {
 		// next.js is handling requests and providing pages where we are navigating to
