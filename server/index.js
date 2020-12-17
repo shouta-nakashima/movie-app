@@ -6,7 +6,11 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-const movieData = require("./data.json");
+const fs = require("fs");
+const path = require("path");
+const filePath = "./data.json";
+
+const movieData = require(filePath);
 
 app.prepare().then(() => {
 	const server = express();
@@ -24,7 +28,18 @@ app.prepare().then(() => {
 
 	server.post("/api/v1/movies", (req, res) => {
 		const movie = req.body;
-		return res.json({ message: "hello next" });
+		movieData.push(movie);
+
+		const fileToPath = path.join(__dirname, filePath);
+
+		const stringifiedData = JSON.stringify(movieData, null, 2);
+
+		fs.writeFile(fileToPath, stringifiedData, (err) => {
+			if (err) {
+				return res.status(422).send(err);
+			}
+			res.json("movieを追加しました。");
+		});
 	});
 
 	server.delete("/api/v1/movie/:id", (req, res) => {
