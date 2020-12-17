@@ -23,6 +23,7 @@ const MovieList = ({ movies }) => {
 										<a>{movie.name}</a>
 									</h4>
 								</Link>
+								<p>{movie.genre}</p>
 
 								<p className="card-text">
 									{shortDescription(movie.description)}

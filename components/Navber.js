@@ -6,9 +6,9 @@ const Navber = () => {
 		<div>
 			<nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 				<div className="container">
-					<a className="navbar-brand" href="#">
-						Movie App
-					</a>
+					<Link href="/">
+						<a className="navbar-brand">Movie App</a>
+					</Link>
 					<button
 						className="navbar-toggler"
 						type="button"
