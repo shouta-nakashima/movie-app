@@ -1,10 +1,13 @@
 import axios from "axios";
 
 const CATEGORY_DATA = [
+	{ id: "c-0", name: "all" },
 	{ id: "c-1", name: "drama" },
-	{ id: "c-2", name: "fantasy" },
-	{ id: "c-3", name: "adventure" },
-	{ id: "c-4", name: "action" },
+	{ id: "c-2", name: "music" },
+	{ id: "c-3", name: "fantasy" },
+	{ id: "c-4", name: "adventure" },
+	{ id: "c-5", name: "action" },
+	{ id: "c-6", name: "anime" },
 ];
 
 export const categoryList = () => {

@@ -16,7 +16,7 @@ const EditMovie = (props) => {
 	const handleUpdateMovie = (movie) => {
 		updateMovie(movie).then((updateMovies) => {
 			//console.log(JSON.stringify(movies));
-			router.push(`/movies/${movie.id}`);
+			router.push("/movies/[id]", `/movies/${movie.id}`);
 		});
 	};
 
