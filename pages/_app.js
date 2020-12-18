@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Navber from "../components/Navber";
 import Footer from "../components/Footer";
+import "../styles/index.scss";
 
 const MyApp = ({ Component, pageProps }) => {
 	return (
