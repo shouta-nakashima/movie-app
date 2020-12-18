@@ -20,10 +20,10 @@ const MovieList = ({ movies }) => {
 							<div className="card-body">
 								<Link href="/movies/[id]" as={`/movies/${movie.id}`}>
 									<h4 className="card-title">
-										<a>{movie.name}</a>
+										<a className="movie-title">{movie.name}</a>
 									</h4>
 								</Link>
-								<p>{movie.genre}</p>
+								<p className="movie-genre">{movie.genre}</p>
 
 								<p className="card-text">
 									{shortDescription(movie.description)}
